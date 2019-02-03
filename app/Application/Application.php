@@ -22,6 +22,11 @@ class Application
     private $databaseConnection;
 
     /**
+     * @var Router $router
+     */
+    private $router;
+
+    /**
      * Храним здесь имя файла конфигурации для того чтобы использовать его в методе boot()
      *
      * @var string
@@ -41,6 +46,19 @@ class Application
     }
 
     /**
+     * Запускае приложение
+     */
+    public function run()
+    {
+        $controllerInfo = $this->router->getRouteInfo();
+        $controllerPrefix = '\Hillel\\Controller\\';
+
+        $controller = $controllerPrefix . $controllerInfo['controller'];
+        $controller = new $controller();
+        $action = $controllerInfo['action'];
+        $controller->$action();
+    }
+    /**
      * Метод загружает и инициализирует все компоненты приложения,
      * а также обрабатывает возможные исключения на этом этапе
      */
@@ -50,8 +68,10 @@ class Application
             // Сначала загружаем конфигурацию
             $this->config = new Config($this->configFileName);
 
+            $routerConfig = $this->config->get('router');
+            $this->router = new Router(Config::CONFIG_DIR . $routerConfig['router_file']);
             // Устанавливаем соединение с базой данных с использованием полученных настроек
-            $this->databaseConnection = new DatabaseConnection($this->config->get('database'));
+            //$this->databaseConnection = new DatabaseConnection($this->config->get('database'));
         } catch (\Exception $e) {
             echo $e;
             exit;

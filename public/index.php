@@ -17,3 +17,4 @@ use Hillel\Application\Application;
 $configFile = __DIR__ . '/../config/app.ini';
 
 $app = new Application($configFile);
+$app->run();

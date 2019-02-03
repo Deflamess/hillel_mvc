@@ -9,6 +9,7 @@ namespace Hillel\Application;
  */
 class Config
 {
+    const CONFIG_DIR = __DIR__ . '/../../config/';
     /**
      * Массив в котором будут хранится обработанный файл конфигурации
      *
