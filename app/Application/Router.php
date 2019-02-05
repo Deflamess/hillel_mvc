@@ -19,7 +19,14 @@ class Router
     {
         $uri = $_SERVER['REQUEST_URI'];
 
-        foreach($this->routes as $path => $controllerInfo) {
+        /*
+         * first method
+         * */
+        //check if uri in routes array
+        $uri_exists = array_key_exists($uri, $this->routes);
+
+        foreach( $this->routes as $path => $controllerInfo ) {
+
             if ( $path === $uri ) {
 
                 $info = explode('@', $controllerInfo);
@@ -30,18 +37,20 @@ class Router
                 ];
             }
 
-            if ( $uri != $path && $uri != array_key_last($this->routes) ) {
+        }
+        if ( !$uri_exists ) {
 
-                return [
-                    'controller' => 'ErrorController',
-                    'action' => 'show404'
-                ];
-            }
+            return [
+                'controller' => 'ErrorController',
+                'action' => 'show404'
+            ];
         }
 
 
-
-      /*  $uri_exists = array_key_exists($uri, $this->routes);
+        /*
+         * second method, not sure it's right
+         * */
+        /*$uri_exists = array_key_exists($uri, $this->routes);
 
         if ($uri_exists) {
 
@@ -56,7 +65,7 @@ class Router
         if ( !$uri_exists ) {
             return [
                 'controller' => 'ErrorController',
-                'action' => 'show'
+                'action' => 'show404'
             ];
         }*/
     }
