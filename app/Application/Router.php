@@ -10,7 +10,7 @@ class Router
 {
     private $routes;
 
-    public function __construct( $routesFile )
+    public function __construct(string $routesFile )
     {
         $this->routes = include($routesFile);
     }
