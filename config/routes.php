@@ -2,5 +2,5 @@
 
 return [
     '/' => 'IndexController@index',
-    '/page/1' => 'PageController@show' 
+    '/page/1' => 'PageController@show',
 ];
