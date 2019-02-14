@@ -2,17 +2,19 @@
 
 namespace Hillel\Controller;
 
+use Hillel\Application\ContainerTrait;
+
 abstract class BaseController
 {
-    const TEMPLATES_DIR = __DIR__. '/../../views';
+    use ContainerTrait;
 
     protected function render(string $templateName, array $variables)
     {
-        $templateName = self::TEMPLATES_DIR . DIRECTORY_SEPARATOR . $templateName . '.phtml';
+        $templateName = TEMPLATES_DIR . $templateName . '.phtml';
         if (!file_exists($templateName)) {
             throw new \Exception('Template not found');
         }
-        $var = $variables;
+        extract($variables);
         include_once($templateName);
     }
 }

@@ -10,6 +10,8 @@ use PDO;
  */
 class DatabaseConnection
 {
+    private $pdo;
+
     /**
      * В конструктор передаем параметры подключения и пытаемся подключится к базе данных,
      * конструктор так же бросает исключение PDOException, оно будет ловиться в метода boot() класса Application
@@ -24,7 +26,7 @@ class DatabaseConnection
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
-        return new PDO(
+        $this->pdo = new PDO(
             sprintf('mysql:host=%s;port=%s;dbname=%s',
                 $connectionSettings['host'],
                 $connectionSettings['port'],
@@ -35,4 +37,14 @@ class DatabaseConnection
             $options
         );
     }
+
+    /**
+     * @return PDO
+     */
+    public function getPdo(): PDO
+    {
+        return $this->pdo;
+    }
+
+
 }

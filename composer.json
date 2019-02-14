@@ -1,0 +1,13 @@
+{
+    "name": "olehh/hillel_mvc",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleh Hrynko",
+            "email": "oleg.grynko@aengizer.dp.ua"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

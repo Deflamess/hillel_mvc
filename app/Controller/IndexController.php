@@ -2,12 +2,22 @@
 
 namespace Hillel\Controller;
 
+use Hillel\Model\Message;
+
 class IndexController extends BaseController
 {
     public function index()
     {
-        $username = 'Vasia';
+        $messageModel = new Message($this->getContainer()->get('db'));
 
-        return $this->render('index/index', [$username]);
+        $datetime = new \DateTime();
+        $id = $messageModel->save(
+            ['message' => 'test2', 'created_at' => $datetime->format(DATE_RFC3339)
+            ]
+        );
+        var_dump($id);
+        die;
+//        $messages['data'] = $messageModel->findAll();
+        $this->render('index/index', $messages);
     }
 }
