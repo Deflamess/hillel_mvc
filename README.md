@@ -22,7 +22,8 @@
 
 Следует учитывать что в системе не может быть несколько одинаковых 
 
-Model: UserModel (add, update, delete user)
-Controller: UserController.php
-Views: Users/user.phtml
-DB: id, name, age, email, address
+DB: id, name, age, email, address <br>
+Model: UserModel (add, update, delete user) <br>
+Controller: UserController.php <br>
+Views: Users/user.phtml <br>
+
