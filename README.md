@@ -11,7 +11,7 @@
 
 Схематическое изображение следующее 
 
-![Схематическое представление проекта](https://drive.google.com/drive/folders/1fDbtqwm2a1FKXHhy3f6sKYNEV3zz_x_F)
+![Схематическое представление проекта](https://www.dropbox.com/s/0oyunywjsmqc4uh/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%202019-02-16%2011.32.22.png?dl=0)
 ### Задание №1 ###
 
 Проект №1.
