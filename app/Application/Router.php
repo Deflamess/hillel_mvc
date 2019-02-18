@@ -17,7 +17,7 @@ class Router
 
     public function getRouteInfo()
     {
-        $uri = $_SERVER['REQUEST_URI'];
+         echo $uri = $_SERVER['REQUEST_URI'];
 
         /*
          * first method
@@ -25,16 +25,19 @@ class Router
         //check if uri in routes array
         $uri_exists = array_key_exists($uri, $this->routes);
 
-        foreach( $this->routes as $path => $controllerInfo ) {
+        if ( $uri_exists ) {
 
-            if ( $path === $uri ) {
+            foreach ($this->routes as $path => $controllerInfo) {
 
-                $info = explode('@', $controllerInfo);
+                if ( $path === $uri ) {
 
-                return [
-                    'controller' => $info[0],
-                    'action' => $info[1]
-                ];
+                    $info = explode('@', $controllerInfo);
+
+                    return [
+                        'controller' => $info[0],
+                        'action' => $info[1]
+                    ];
+                }
             }
 
         }
@@ -45,7 +48,6 @@ class Router
                 'action' => 'show404'
             ];
         }
-
 
         /*
          * second method, not sure it's right

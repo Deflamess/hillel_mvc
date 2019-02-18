@@ -39,6 +39,7 @@ class Application
      * @var Container
      */
     private $container;
+
     /**
      * Сначала передадим в класс имя файла конфигурации для того чтобы его загрузить
      *
@@ -80,6 +81,7 @@ class Application
 
             $routerConfig = $this->config->get('router');
             $this->router = new Router(Config::CONFIG_DIR . $routerConfig['router_file']);
+
             // Устанавливаем соединение с базой данных с использованием полученных настроек
             $this->databaseConnection = new DatabaseConnection($this->config->get('database'));
             $this->container = new Container();

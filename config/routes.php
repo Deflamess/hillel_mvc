@@ -1,6 +1,8 @@
 <?php
-
 return [
-    '/' => 'IndexController@index',
-    '/page/1' => 'PageController@show',
+    '/' => 'IndexController@renderIndex',
+    '/users' => 'UserController@showUser',
+    '/users/add' => 'UserController@addUser',
+    '/users/update' => 'UserController@UserUpdate',
+    '/users/delete' => 'UserController@UserDelete'
 ];
