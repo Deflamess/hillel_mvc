@@ -53,6 +53,10 @@ abstract class BaseModel
         return $result;
     }
 
+    /**
+     * @param array $data
+     * @return int
+     */
     public function save(array $data): int
     {
         $fields = array_keys($data);
