@@ -12,3 +12,5 @@ class ErrorController extends BaseController
         return $this->render('errors/404', []);
     }
 }
+
+

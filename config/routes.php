@@ -2,7 +2,7 @@
 return [
     '/' => 'IndexController@renderIndex',
     '/users' => 'UserController@showUser',
-    '/users/add' => 'UserController@addUser',
-    '/users/update' => 'UserController@UserUpdate',
-    '/users/delete' => 'UserController@UserDelete'
+    '/user/add' => 'UserController@addUser',
+    '/user/update' => 'UserController@UserUpdate',
+    '/user/delete' => 'UserController@UserDelete'
 ];

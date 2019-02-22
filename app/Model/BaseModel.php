@@ -42,6 +42,20 @@ abstract class BaseModel
         return $result;
     }
 
+    public function emailExists(string $email)
+    {
+        $sql = "SELECT * FROM $this->tableName WHERE email = :email";
+
+        $stmt = $this->databaseConnection->prepare($sql);
+        $stmt->execute(['email' => $email]);
+
+        // check if email exists in DB
+        if ( is_array($stmt->fetch(PDO::FETCH_ASSOC)))
+            return true;
+        else
+            return false;
+    }
+
     /**
      * @return array|null
      */
@@ -71,11 +85,17 @@ abstract class BaseModel
                 $preparedValues[] = $value;
             }
         }
+        try {
+            $preparedValues = implode(',', $preparedValues);
 
-        $preparedValues = implode(',', $preparedValues);
-        $sql = "INSERT INTO $this->tableName ($fields) VALUES ($preparedValues)";
+            $sql = "INSERT INTO $this->tableName ($fields) VALUES ($preparedValues)";
 
-        $query = $this->databaseConnection->exec($sql);
+            // try to check if email exists in db
+
+                $query = $this->databaseConnection->exec($sql);
+        } catch (\Exception $e) {
+            echo $e;
+        }
         return $this->databaseConnection->lastInsertId();
 
     }

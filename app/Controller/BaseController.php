@@ -19,7 +19,9 @@ abstract class BaseController
         if (!file_exists($templateName)) {
             throw new \Exception('Template not found');
         }
-       extract($variables);
+
+        extract($variables);
+
         include_once($templateName);
     }
 }
