@@ -11,6 +11,11 @@ class ErrorController extends BaseController
     {
         return $this->render('errors/404', []);
     }
+
+    public function errorEmailExists()
+    {
+
+    }
 }
 
 

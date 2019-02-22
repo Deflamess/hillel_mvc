@@ -85,18 +85,24 @@ abstract class BaseModel
                 $preparedValues[] = $value;
             }
         }
-        try {
-            $preparedValues = implode(',', $preparedValues);
 
-            $sql = "INSERT INTO $this->tableName ($fields) VALUES ($preparedValues)";
+        $preparedValues = implode(',', $preparedValues);
 
-            // try to check if email exists in db
+        $sql = "INSERT INTO $this->tableName ($fields) VALUES ($preparedValues)";
 
-                $query = $this->databaseConnection->exec($sql);
-        } catch (\Exception $e) {
-            echo $e;
-        }
+        $query = $this->databaseConnection->exec($sql);
         return $this->databaseConnection->lastInsertId();
 
     }
+
+    public function deleteUserById(int $id)
+    {
+        $sql = "DELETE FROM $this->tableName WHERE id = :id";
+
+        $stmt = $this->databaseConnection->prepare($sql);
+        $res = $stmt->execute(['id' => $id]);
+
+        return $res;
+    }
+
 }

@@ -80,11 +80,16 @@ class Application
             $this->config = new Config($this->configFileName);
 
             $routerConfig = $this->config->get('router');
+
             $this->router = new Router(Config::CONFIG_DIR . $routerConfig['router_file']);
 
             // Устанавливаем соединение с базой данных с использованием полученных настроек
             $this->databaseConnection = new DatabaseConnection($this->config->get('database'));
             $this->container = new Container();
+
+            //debug
+            //var_dump($this->container->get('id'));
+
         } catch (\Exception $e) {
             echo $e;
             exit;
@@ -94,5 +99,6 @@ class Application
     private function registerServices()
     {
         $this->container->set('db', $this->databaseConnection->getPdo());
+        //$this->container->set('id', $this->router->id);
     }
 }
