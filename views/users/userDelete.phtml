@@ -1,0 +1,58 @@
+<?php include TEMPLATES_DIR . '/layouts/header.phtml';?>
+
+    <div class="container">
+        <h2>User delete</h2>
+        <hr/>
+        <div class="row">
+            <div class="col">
+                <p>Name</p>
+            </div>
+            <div class="col">
+                <p>Age</p>
+            </div>
+            <div class="col">
+                <p>Emali</p>
+            </div>
+            <div class="col">
+                <p>Address</p>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+        <hr/>
+        <?php if (!empty($data)) {
+            foreach ($data as $key => $value):?>
+
+                <!-- Project One -->
+                <div class="row">
+                    <div class="col">
+                        <p><?= $value['name'];?></p>
+                    </div>
+                    <div class="col">
+                        <p><?= $value['age'];?></p>
+                    </div>
+                    <div class="col">
+                        <p><?= $value['email'];?></p>
+                    </div>
+                    <div class="col">
+                        <p><?= $value['address'];?></p>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary" href="<?= $value['id'];?>">Edit</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary" href="/user/delete?id=<?= $value['id']?>">Delete</a>
+                    </div>
+                </div>
+
+                <hr/>
+            <?php endforeach;
+        } ?>
+
+    </div>
+
+<?php include TEMPLATES_DIR . '/layouts/footer.phtml';?>
