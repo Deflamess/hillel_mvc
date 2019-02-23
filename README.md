@@ -22,12 +22,8 @@
 
 Следует учитывать что в системе не может быть несколько одинаковых 
 
-DB: id, name, age, email, address <br>
+
+DB: guestbook.users - id, name, age, email, address <br>
 Model: UserModel (add, update, delete user) <br>
 Controller: UserController.php <br>
 Views: Users/user.phtml <br>
-
-UserStory: <br>
-нажимаю добавить User - контроллер вызывает медот Controller->adduser->add(метод из модели, где идет вставка SQL в табл через post)
-потом контроллер обновляет страницу, где добавляем пользователя(view) с надписью - пользователь добавлен/ошибка.
-изменить, удалить и показать всех пользователей - та же последовательность, но со своими переменными.
