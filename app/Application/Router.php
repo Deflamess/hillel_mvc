@@ -14,11 +14,10 @@ class Router
 
     public $id;
 
-    public $idContainer;
-
-    public function __construct(string $routesFile )
+    public function __construct(string $routesFile, Container $container)
     {
         $this->routes = include($routesFile);
+        $this->container = $container;
     }
 
     public function getRouteInfo()
@@ -26,13 +25,14 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
 
         //find GET data passed through url and store it into Container
-        $this->id = parse_url($uri, PHP_URL_QUERY);
-        $this->id = (int)(str_replace('id=', '', $this->id));
-        $this->idContainer = new Container();
-        $this->idContainer->set('id', $this->id);
+        $params = parse_url($uri, PHP_URL_QUERY);
+        $id = (int)(str_replace('id=', '', $params));
+        if (!empty($id) ) {
+            $this->container->set('id', $id);
+        }
 
         //build string what to ignore in URI ?id= and id_number
-        $ignoreStr = "?id=" . $this->id;
+        $ignoreStr = "?id=" . $id;
         $uri = str_replace($ignoreStr, '', $uri);
         //var_dump($uri); die;
 
@@ -62,8 +62,9 @@ class Router
                 'action' => 'show404'
             ];
         }
-        if ( strrpos($uri, '?') > 0 )
-            return $this->id;
+        if ( strrpos($uri, '?') > 0 ) {
+            return $id;
+        }
     }
 
 }

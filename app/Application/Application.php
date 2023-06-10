@@ -59,7 +59,7 @@ class Application
      */
     public function run()
     {
-        $controllerInfo = $this->router->getRouteInfo();
+        $controllerInfo = $this->router->getRouteInfo($this->container);
         $controllerPrefix = '\Hillel\\Controller\\';
 
         $controller = $controllerPrefix . $controllerInfo['controller'];
@@ -80,15 +80,15 @@ class Application
             $this->config = new Config($this->configFileName);
 
             $routerConfig = $this->config->get('router');
-
-            $this->router = new Router(Config::CONFIG_DIR . $routerConfig['router_file']);
+            $this->container = new Container();
+            $this->router = new Router(Config::CONFIG_DIR . $routerConfig['router_file'], $this->container);
 
             // Устанавливаем соединение с базой данных с использованием полученных настроек
             $this->databaseConnection = new DatabaseConnection($this->config->get('database'));
-            $this->container = new Container();
+
 
             //debug
-            //var_dump($this->container->get('id'));
+//            var_dump($this->container);
 
         } catch (\Exception $e) {
             echo $e;
@@ -99,6 +99,6 @@ class Application
     private function registerServices()
     {
         $this->container->set('db', $this->databaseConnection->getPdo());
-        //$this->container->set('id', $this->router->id);
+       // $this->container->set('id', $this->router->id);
     }
 }
