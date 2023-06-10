@@ -34,7 +34,6 @@ class Router
         //build string what to ignore in URI ?id= and id_number
         $ignoreStr = "?id=" . $id;
         $uri = str_replace($ignoreStr, '', $uri);
-        //var_dump($uri); die;
 
         //check if uri in routes array
         $uri_exists = array_key_exists($uri, $this->routes);
